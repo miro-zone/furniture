@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-    <!-- Styles -->
-</head>
-
-<body class="">
-    <div class="">
-        @if (Route::has('login'))
-        <div class="">
-            @auth
-            <a href="{{ url('/dashboard') }}" class="">Dashboard</a>
-            @else
-            <a href="{{ route('login') }}" class="">Log in</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="">Register</a>
-            @endif
-            @endauth
+    <x-guest-layout>
+        <div class="row g-4">
+            @forelse ($products as $product) <div class="col-xs-12 col-md-6 col-lg-4">
+                <p>{{ $product }}</p>
+                <x-furniture-product />
+            </div>
+            @empty
+            <p class="text-center">No Furniture!</p>
+            @endforelse
         </div>
-        @endif
-
-    </div>
-</body>
-
-</html>
+    </x-guest-layout>
